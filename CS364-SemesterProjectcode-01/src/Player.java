@@ -29,4 +29,9 @@ public class Player {
         return this.PlayID; 
     }
 
+    public void setPlayID(int ID){
+        this.PlayID = ID; 
+
+    }
+
 }
