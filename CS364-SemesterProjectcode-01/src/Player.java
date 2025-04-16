@@ -34,4 +34,8 @@ public class Player {
 
     }
 
+    public String toString() {
+    	return this.PlayID +": " + this.FirstName + " "+ this.LastName; 
+    }
+
 }
