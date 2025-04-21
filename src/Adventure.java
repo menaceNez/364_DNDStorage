@@ -1,25 +1,20 @@
+import java.sql.Date;
 import java.time.*;
 
 public class Adventure {
 
-	private int adventureId;
 	private int campaignId;
 	private int playerId;
-	private LocalDate startDate;
-	private LocalDate endDate;
+	private java.sql.Date startDate;
+	private java.sql.Date endDate;
 	private String adventureName;
 
-	public Adventure(int advID, int campID, int playID, LocalDate start, LocalDate end, String advName) {
-		this.adventureId = advID;
+	public Adventure(int campID, int playID, java.sql.Date start, java.sql.Date end, String advName) {
 		this.campaignId = campID;
 		this.playerId = playID;
 		this.startDate = start;
 		this.endDate = end;
 		this.adventureName = advName;
-	}
-
-	public int getAdvId() {
-		return adventureId;
 	}
 
 	public int getCampId() {
@@ -30,16 +25,21 @@ public class Adventure {
 		return playerId;
 	}
 
-	public LocalDate getStartDate() {
+	public Date getStartDate() {
 		return startDate;
 	}
 
-	public LocalDate getEndDate() {
+	public Date getEndDate() {
 		return endDate;
 	}
 
 	public String getAdvName() {
 		return adventureName;
+	}
+	
+	@Override
+	public String toString() {
+		return "{ "+campaignId +" "+ playerId +" "+ this.startDate +" "+ this.endDate +" "+ this.adventureName +" }";
 	}
 
 	public static void main(String[] args) {
