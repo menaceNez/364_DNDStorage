@@ -2,7 +2,7 @@ public class Persona {
     public int charID; 
     public int playID; 
     public int classID; 
-    public String class; 
+    public String clas; 
     public int raceID; 
     public String race; 
     public int lev; 
@@ -16,8 +16,8 @@ public class Persona {
         this.charFirstName = First; 
         this.charMiddleName = Middle; 
         this.charLastName = Last; 
-        this.class = Class; 
-        this.cace = Race; 
+        this.clas = Class; 
+        this.race = Race; 
         this.lev = level; 
     } 
 
@@ -25,8 +25,8 @@ public class Persona {
         this.playID = playID; 
         this.charFirstName = First;  
         this.charLastName = Last; 
-        this.class = Class; 
-        this.cace = Race; 
+        this.clas = Class; 
+        this.race = Race; 
         this.lev = 1; 
     }
 
@@ -38,7 +38,7 @@ public class Persona {
     }
 
     public void setClassID(int classID){
-        this.classID = classID
+        this.classID = classID; 
     }
 
     public int getRaceID(){
