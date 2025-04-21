@@ -35,25 +35,74 @@ public class PlayerInfo extends JPanel {
 		info.setBackground(new Color(240, 255, 255));
 		info.setBounds(10, 10, 502, 348);
 		info.setLayout(null);
-		//create.setVisible(false);
 		
 		
 		JLabel PlayerIn = new JLabel("Player Info");
 		PlayerIn.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 20));
 		PlayerIn.setHorizontalAlignment(SwingConstants.CENTER);
-		PlayerIn.setBounds(154, 42, 186, 50);
+		PlayerIn.setBounds(154, 10, 186, 50);
 		info.add(PlayerIn);
 		
 		JTextArea txtrHello = new JTextArea();
 		txtrHello.setEditable(false);
 		txtrHello.setText(user.toString());
-		txtrHello.setBounds(194, 147, 121, 27);
+		txtrHello.setBounds(10, 10, 121, 41);
 		info.add(txtrHello);
 		
 		internalFrame.getContentPane().add(info); 
 		
+		JButton createPer = new JButton("Create");
+		createPer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CreatePers per = new CreatePers(internalFrame, data, user); 
+				info.setVisible(false);
+				
+			}
+		});
+		createPer.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 10));
+		createPer.setBounds(74, 118, 102, 41);
+		info.add(createPer);
+		
+		JButton viewPer = new JButton("View");
+		viewPer.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 10));
+		viewPer.setBounds(74, 227, 102, 41);
+		info.add(viewPer);
+		
+		JButton createAdv = new JButton("Create");
+		createAdv.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 10));
+		createAdv.setBounds(319, 118, 102, 41);
+		info.add(createAdv);
+		
+		JButton viewAdv = new JButton("View");
+		viewAdv.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 10));
+		viewAdv.setBounds(319, 227, 102, 41);
+		info.add(viewAdv);
+		
+		JLabel createPreLab = new JLabel("Create New Character");
+		createPreLab.setHorizontalAlignment(SwingConstants.CENTER);
+		createPreLab.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 10));
+		createPreLab.setBounds(44, 81, 156, 27);
+		info.add(createPreLab);
+		
+		JLabel viewPerLab = new JLabel("View Current Characters");
+		viewPerLab.setHorizontalAlignment(SwingConstants.CENTER);
+		viewPerLab.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 10));
+		viewPerLab.setBounds(44, 190, 156, 27);
+		info.add(viewPerLab);
+		
+		JLabel viewAdvLab = new JLabel("View Current Adventures");
+		viewAdvLab.setHorizontalAlignment(SwingConstants.CENTER);
+		viewAdvLab.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 10));
+		viewAdvLab.setBounds(292, 190, 156, 27);
+		info.add(viewAdvLab);
+		
+		JLabel createAdvLab = new JLabel("Create New Adventure");
+		createAdvLab.setHorizontalAlignment(SwingConstants.CENTER);
+		createAdvLab.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 10));
+		createAdvLab.setBounds(292, 81, 156, 27);
+		info.add(createAdvLab);
+		
 	}
 	
 }
-
 
