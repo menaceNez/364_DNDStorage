@@ -24,5 +24,10 @@ public class Class {
         return classID; 
     }
 
+    public String toString() {
+    	return className; 
+    			
+    }
+
 
 }

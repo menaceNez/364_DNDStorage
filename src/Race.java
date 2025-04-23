@@ -23,4 +23,9 @@ public class Race {
         return raceID; 
     }
 
+        
+    public String toString() {
+    	return raceName; 
+    }
+
 }
