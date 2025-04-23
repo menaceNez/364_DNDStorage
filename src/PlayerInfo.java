@@ -64,6 +64,12 @@ public class PlayerInfo extends JPanel {
 		info.add(createPer);
 		
 		JButton viewPer = new JButton("View");
+		viewPer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DisplayMultiPers dis = new DisplayMultiPers(internalFrame, data, user); 
+				info.setVisible(false);
+			}
+		});
 		viewPer.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 10));
 		viewPer.setBounds(74, 227, 102, 41);
 		info.add(viewPer);

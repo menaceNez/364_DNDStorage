@@ -3,6 +3,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Date;
 
 public class DndDatabase {
 
@@ -165,6 +166,131 @@ public class DndDatabase {
 	
 	
 		return races; 
+	}
+
+	public void insertPersona(Persona a) throws SQLException {
+		String sql = "INSERT INTO Persona (PlayID, CharFirstName, CharMiddName, CharLastName, ClassID, RaceID, Lev, CreationDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		PreparedStatement stmt = connection.prepareStatement(sql);
+		stmt.setInt(1,  a.getPlayID());
+		stmt.setString(2, a.getPFirstName());
+		stmt.setString(3, a.getMiddName());
+		stmt.setString(4, a.getPLastName());
+		stmt.setInt(5, a.getClassID());
+		stmt.setInt(6, a.getRaceID());
+		stmt.setInt(7, a.getLev());
+		stmt.setDate(8, a.getCal());
+		//stmt.setString(3, e.getFirstName());
+		//stmt.setString(4, e.getMiddleName());
+		// stmt.setString(5, e.getLastName());
+		int numRowsAffected = stmt.executeUpdate();
+		System.out.println("Number of rows affected: " + numRowsAffected);
+	}
+	
+	public void updatePersona(Persona cur, Persona upinfo) throws SQLException{
+		String sql = "UPDATE Persona SET CharFirstName = ?, CharMiddName = ?, CharLastName = ?, Lev = ? WHERE CharID = ?";
+		PreparedStatement stmt = connection.prepareStatement(sql);
+		int chaId = cur.getCharID(); 
+		stmt.setString(1, upinfo.getPFirstName());
+		stmt.setString(2, upinfo.getMiddName());
+		stmt.setString(3, upinfo.getPLastName());
+		stmt.setInt(4, upinfo.getLev());
+		stmt.setInt(5, chaId);
+		int numRowsAffected = stmt.executeUpdate();
+		System.out.println("Number of rows affected: " + numRowsAffected);
+	}
+	
+	public void getAndSetCharID(Persona a) throws SQLException{
+		String query = "SELECT CharID FROM Persona WHERE charFirstName = ? AND charLastName = ?" ;
+		PreparedStatement stmt = connection.prepareStatement(query);
+		String first = a.getPFirstName(); 
+		String last = a.getPLastName(); 
+		stmt.setString(1, first);
+		stmt.setString(2, last);
+		ResultSet result = stmt.executeQuery(); 
+		result.next(); 
+		int charID = result.getInt("CharID"); 
+		a.setCharID(charID); 
+	}
+	
+	
+	public Persona[] findPlayPersonas(Player p) throws SQLException {
+		int plID = p.getPlayID(); 
+		String query2 = "SELECT count(*) FROM Persona WHERE PlayID = ?"; 
+		PreparedStatement stmt2 = connection.prepareStatement(query2);
+		stmt2.setInt(1, plID);
+		ResultSet result = stmt2.executeQuery(); 
+		result.next(); 
+		int numPers = result.getInt(1); 
+		Persona[] pers = new Persona[numPers]; 
+		String query = "SELECT * FROM Persona WHERE PlayID = ?" ;
+		PreparedStatement stmt = connection.prepareStatement(query);
+		stmt.setInt(1, plID);
+		result = stmt.executeQuery(); 
+		int i = 0; 
+		while(result.next() && i < numPers) {
+			String first = result.getString("CharFirstName"); 
+			String midd = result.getString("CharMiddName"); 
+			String last = result.getString("CharLastName"); 
+			int claId = result.getInt("ClassID"); 
+			int racId = result.getInt("RaceID"); 
+			int chaId = result.getInt("CharID"); 
+			int lev = result.getInt("Lev"); 
+			Date da = result.getDate("CreationDate"); 
+			Persona adding = new Persona(plID, chaId, first, midd, last, claId, racId, lev, da); 
+			getAndsetClasName(adding); 
+			getAndsetRaceName(adding); 
+			pers[i] = adding; 
+			i++; 
+		}
+		return pers; 
+	}
+	
+	public boolean getAndsetClassID(Persona pers) throws SQLException {
+		String query = "SELECT ClassID FROM Class WHERE ClassName = ?" ;
+		PreparedStatement stmt = connection.prepareStatement(query);
+		String cla = pers.getClaName(); 
+		stmt.setString(1, cla);
+		ResultSet result = stmt.executeQuery(); 
+		result.next(); 
+		int claID =  result.getInt("ClassID"); 
+		pers.setClassID(claID); 
+		return true; 
+	}
+	
+	public boolean getAndsetRaceID(Persona pers) throws SQLException {
+		String query = "SELECT RaceID FROM Race WHERE RaceName = ?" ;
+		PreparedStatement stmt = connection.prepareStatement(query);
+		String rac = pers.getRacName(); 
+		stmt.setString(1, rac);
+		ResultSet result = stmt.executeQuery(); 
+		result.next(); 
+		int racID =  result.getInt("RaceID"); 
+		pers.setRaceID(racID); 
+		return true; 
+	}
+	
+	public boolean getAndsetRaceName(Persona pers) throws SQLException {
+		String query = "SELECT RaceName FROM Race WHERE RaceID = ?" ;
+		PreparedStatement stmt = connection.prepareStatement(query);
+		int rac = pers.getRaceID(); 
+		stmt.setInt(1, rac);
+		ResultSet result = stmt.executeQuery(); 
+		result.next(); 
+		String racID =  result.getString("RaceName"); 
+		pers.setRacName(racID);
+		return true; 
+	}
+	
+	public boolean getAndsetClasName(Persona pers) throws SQLException {
+		String query = "SELECT ClassName FROM Class WHERE ClassID = ?" ;
+		PreparedStatement stmt = connection.prepareStatement(query);
+		int cla = pers.getClassID(); 
+		stmt.setInt(1, cla);
+		ResultSet result = stmt.executeQuery(); 
+		result.next(); 
+		String claID =  result.getString("ClassName"); 
+		pers.setClaName(claID);
+		return true; 
 	}
 	
 }
