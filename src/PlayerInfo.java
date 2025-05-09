@@ -75,11 +75,23 @@ public class PlayerInfo extends JPanel {
 		info.add(viewPer);
 		
 		JButton createAdv = new JButton("Create");
+		createAdv.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new CreateAdventure(internalFrame,data,user);
+				info.setVisible(false);
+			}
+		});
 		createAdv.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 10));
 		createAdv.setBounds(319, 118, 102, 41);
 		info.add(createAdv);
 		
 		JButton viewAdv = new JButton("View");
+		viewAdv.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new ViewAdventures(internalFrame, data, user);
+				info.setVisible(false);
+			}
+		});
 		viewAdv.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 10));
 		viewAdv.setBounds(319, 227, 102, 41);
 		info.add(viewAdv);

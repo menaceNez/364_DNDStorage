@@ -110,7 +110,15 @@ public class Persona {
     	this.creationDate = cre; 
     }
     
-    
+    public Persona(int playID,int charID, String First, String Last, String Class, String Race){
+        this.playID = playID; 
+        this.charFirstName = First;  
+        this.charLastName = Last; 
+        this.clas = Class; 
+        this.race = Race; 
+        this.charID = charID;
+        this.lev = 1; 
+    }
 
 
 	public int getClassID(){

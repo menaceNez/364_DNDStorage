@@ -16,13 +16,12 @@ public class DndDatabase {
 		url = url + password;
 	}
 	
-	public void connect() {
+	public Connection connect() {
 		try {
-			connection = DriverManager.getConnection(url);
-			System.out.println("can connect!"); 
+			return connection = DriverManager.getConnection(url);
 		} catch (SQLException e) {
-			System.out.println("Cannot connect!");
 			System.out.println(e);
+			return null;
 		}
 	}
 	
