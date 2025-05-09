@@ -1,6 +1,7 @@
 import java.sql.Date;
 import java.time.LocalDate;
 
+
 public class Persona {
     public int charID; 
     public int playID; 
@@ -34,9 +35,6 @@ public class Persona {
         
     }
     
-    /* 
-     * added 4/18 needs to be copied over
-     */
     
     public Persona(int playID, String First, String Last, int lev) {
     	this.playID = playID; 
@@ -98,6 +96,20 @@ public class Persona {
         this.lev = level; 
     } 
     
+    //added 5/2 needs to be copied over
+    
+    public Persona(int playID, int chaID, String First, String Middle, String Last, String clas, String race, int lev, Date cre) {
+    	this.playID = playID; 
+    	this.charID = chaID; 
+    	this.charFirstName = First; 
+    	this.charMiddleName = Middle; 
+    	this.charLastName = Last; 
+    	this.lev = lev; 
+    	this.clas = clas; 
+    	this.race = race; 
+    	this.creationDate = cre; 
+    }
+    
     
 
 
@@ -130,10 +142,6 @@ public class Persona {
     }
     
     
-    /*
-     * created 4/18 need to be copied over
-     */
-    
     public String getClaName() {
     	return this.clas; 
 
@@ -158,7 +166,10 @@ public class Persona {
     
     public String toString() {
     	
-    	return  this.charID + " " + this.charFirstName + " " + this.charLastName + " " + this.clas + ": " + this.classID + " " + this.race + ": " + this.raceID; 
+    	//return  this.charID + " " + this.charFirstName + " " + this.charLastName + " " + this.clas + ": " + this.classID + " " + this.race + ": " + this.raceID; 
+    	//return this.playID+ " " + this.charID + " " + this.charFirstName + " " + this.charLastName + " " + this.clas + " " + this.race + " level: " + this.lev + " Created: " + this.creationDate;
+    	return this.charID + " " + this.playID + " " +  this.charFirstName + " " + this.charLastName + " " + this.clas + " " + this.race + " level: " + this.lev + " Created: " + this.creationDate;
+
     }
     
     public void setRacName(String rac) {

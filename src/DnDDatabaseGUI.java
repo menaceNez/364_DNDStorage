@@ -44,7 +44,7 @@ public class DnDDatabaseGUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 552, 435);
+		frame.setBounds(100, 100, 752, 534);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		internalFrame = new JInternalFrame("DnD Datebase");

@@ -21,7 +21,7 @@ import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class PlayerInfo extends JPanel {
+public class ViewOption extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -30,85 +30,54 @@ public class PlayerInfo extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public PlayerInfo(JInternalFrame internalFrame, DndDatabase data, Player user) {
+	public ViewOption(JInternalFrame internalFrame, DndDatabase data) {
 		info = new JPanel();
 		info.setBackground(new Color(240, 255, 255));
 		info.setBounds(10, 10, 502, 348);
 		info.setLayout(null);
 		
 		
-		JLabel PlayerIn = new JLabel("Player Info");
+		JLabel PlayerIn = new JLabel("select an item to view");
 		PlayerIn.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 20));
 		PlayerIn.setHorizontalAlignment(SwingConstants.CENTER);
-		PlayerIn.setBounds(154, 10, 186, 50);
+		PlayerIn.setBounds(112, 10, 280, 50);
 		info.add(PlayerIn);
 		
-		JTextArea txtrHello = new JTextArea();
-		txtrHello.setEditable(false);
-		txtrHello.setText(user.toString());
-		txtrHello.setBounds(10, 10, 121, 41);
-		info.add(txtrHello);
 		
-		internalFrame.getContentPane().add(info); 
 		
-		JButton createPer = new JButton("Create");
-		createPer.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				CreatePers per = new CreatePers(internalFrame, data, user); 
-				info.setVisible(false);
-				
-			}
-		});
-		createPer.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 10));
-		createPer.setBounds(74, 118, 102, 41);
-		info.add(createPer);
+		internalFrame.getContentPane().add(info);
 		
 		JButton viewPer = new JButton("View");
 		viewPer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DisplayMultiPers dis = new DisplayMultiPers(internalFrame, data, user); 
+				ViewPers pers = new ViewPers(internalFrame, data); 
+				//WelcomeScreenGUI wel = new WelcomeScreenGUI(internalFrame, data); 
 				info.setVisible(false);
 			}
 		});
+;
 		viewPer.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 10));
-		viewPer.setBounds(74, 227, 102, 41);
+		viewPer.setBounds(73, 128, 102, 41);
 		info.add(viewPer);
-		
-		JButton createAdv = new JButton("Create");
-		createAdv.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 10));
-		createAdv.setBounds(319, 118, 102, 41);
-		info.add(createAdv);
 		
 		JButton viewAdv = new JButton("View");
 		viewAdv.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 10));
-		viewAdv.setBounds(319, 227, 102, 41);
+		viewAdv.setBounds(314, 128, 102, 41);
 		info.add(viewAdv);
 		
-		JLabel createPreLab = new JLabel("Create New Character");
-		createPreLab.setHorizontalAlignment(SwingConstants.CENTER);
-		createPreLab.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 10));
-		createPreLab.setBounds(44, 81, 156, 27);
-		info.add(createPreLab);
-		
-		JLabel viewPerLab = new JLabel("View Current Characters");
+		JLabel viewPerLab = new JLabel("View Characters");
 		viewPerLab.setHorizontalAlignment(SwingConstants.CENTER);
 		viewPerLab.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 10));
-		viewPerLab.setBounds(44, 190, 156, 27);
+		viewPerLab.setBounds(48, 91, 156, 27);
 		info.add(viewPerLab);
 		
-		JLabel viewAdvLab = new JLabel("View Current Adventures");
+		JLabel viewAdvLab = new JLabel("View Adventures");
 		viewAdvLab.setHorizontalAlignment(SwingConstants.CENTER);
 		viewAdvLab.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 10));
-		viewAdvLab.setBounds(292, 190, 156, 27);
+		viewAdvLab.setBounds(288, 91, 156, 27);
 		info.add(viewAdvLab);
 		
-		JLabel createAdvLab = new JLabel("Create New Adventure");
-		createAdvLab.setHorizontalAlignment(SwingConstants.CENTER);
-		createAdvLab.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 10));
-		createAdvLab.setBounds(292, 81, 156, 27);
-		info.add(createAdvLab);
-		
-		JButton btnNewButton = new JButton("LOGOUT");
+		JButton btnNewButton = new JButton("EXIT");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				WelcomeScreenGUI wel = new WelcomeScreenGUI(internalFrame, data); 
@@ -119,7 +88,24 @@ public class PlayerInfo extends JPanel {
 		btnNewButton.setBounds(407, 317, 85, 21);
 		info.add(btnNewButton);
 		
+		JButton viewStats = new JButton("View");
+		viewStats.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ViewStats vi = new ViewStats(internalFrame, data);
+				info.setVisible(false);
+			}
+		});
+		viewStats.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 10));
+		viewStats.setBounds(195, 238, 102, 41);
+		info.add(viewStats);
+		
+		JLabel viewStatsLab = new JLabel("View Stats");
+		viewStatsLab.setHorizontalAlignment(SwingConstants.CENTER);
+		viewStatsLab.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 10));
+		viewStatsLab.setBounds(168, 197, 156, 27);
+		info.add(viewStatsLab);
+		
 	}
-	
 }
+
 

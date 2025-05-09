@@ -150,9 +150,24 @@ public class CreatePers extends JPanel {
 		levl.add(SetLevOpt);
 		levl.add(DeftLevOpt);
 		
+		JTextPane SaveErrLab = new JTextPane();
+		SaveErrLab.setForeground(new Color(255, 0, 0));
+		SaveErrLab.setEditable(false);
+		SaveErrLab.setBackground(new Color(240, 255, 255));
+		SaveErrLab.setFont(new Font("Century Gothic", Font.PLAIN, 10));
+		SaveErrLab.setText("ERROR: Insufficent Informaton Entered");
+		SaveErrLab.setBounds(20, 68, 195, 41);
+		SaveErrLab.setVisible(false);
+		//pers.add(SaveErrLab);
+		
+		
 		JButton SaveBut = new JButton("SAVE");
 		SaveBut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				pers.add(SaveErrLab);
+				if(SaveErrLab.isVisible()) {
+					SaveErrLab.setVisible(false); 
+				}
 				String first = FirNaTxt.getText(); 
 				System.out.println(first); 
 				String middle = MidNaTxt.getText(); 
@@ -186,10 +201,16 @@ public class CreatePers extends JPanel {
 					data.getAndsetClasName(adding); 
 					data.getAndsetRaceName(adding); 
 					data.getAndSetCharID(adding); 
-				} catch (SQLException e1) {
+				} catch (Exception e1) {
 					// TODO Auto-generated catch block
+					SaveErrLab.setVisible(true);
+					pers.repaint();
 					e1.printStackTrace();
-				}
+				} /*catch (SQLException j) {
+					SaveErrLab.setVisible(true);
+					pers.repaint();
+					j.printStackTrace();
+				}*/
 				DisplaySingPers dis = new DisplaySingPers(internalFrame, data, user, adding); 
 				pers.setVisible(false);
 
@@ -213,8 +234,20 @@ public class CreatePers extends JPanel {
 		PickRacLab.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 10));
 		PickRacLab.setBounds(289, 177, 85, 13);
 		pers.add(PickRacLab);
+		
+		JButton ExitBut = new JButton("EXIT");
+		ExitBut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 PlayerInfo info = new PlayerInfo(internalFrame, data,  user); 
+				 pers.setVisible(false);
+			}
+		});
+		ExitBut.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 10));
+		ExitBut.setBounds(289, 272, 85, 21);
+		pers.add(ExitBut);
+		
+		
 	}
 }
-
 
 

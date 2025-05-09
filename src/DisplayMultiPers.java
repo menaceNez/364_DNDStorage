@@ -21,6 +21,7 @@ import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JList;
+import javax.swing.JScrollPane;
 
 public class DisplayMultiPers extends JPanel {
 
@@ -61,10 +62,14 @@ public class DisplayMultiPers extends JPanel {
 		
 		internalFrame.getContentPane().add(dismulti);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(134, 91, 316, 202);
+		dismulti.add(scrollPane);
+		
+		
 		JList<Persona> list = new JList<>(chara);
+		scrollPane.setViewportView(list);
 		list.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 10));
-		list.setBounds(134, 91, 316, 202);
-		dismulti.add(list);
 		
 		JTextArea txtrSelectACharacter = new JTextArea();
 		txtrSelectACharacter.setWrapStyleWord(true);
@@ -73,16 +78,40 @@ public class DisplayMultiPers extends JPanel {
 		txtrSelectACharacter.setBounds(10, 106, 104, 112);
 		dismulti.add(txtrSelectACharacter);
 		
+		JTextPane SelErr = new JTextPane();
+		SelErr.setEditable(false);
+		SelErr.setForeground(new Color(255, 0, 0));
+		SelErr.setText("ERROR: SELECT A CHARACTER");
+		SelErr.setBackground(new Color(240, 255, 255));
+		SelErr.setBounds(10, 262, 121, 31);
+		dismulti.add(SelErr);
+		SelErr.setVisible(false);
+		
 		JButton btnNewButton = new JButton("SELECT");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Persona going = list.getSelectedValue(); 
-				DisplaySingPers dis = new DisplaySingPers(internalFrame, data, user, going); 
-				dismulti.setVisible(false);
+				if(list.getSelectedValue() != null) {
+					Persona going = list.getSelectedValue(); 
+					DisplaySingPers dis = new DisplaySingPers(internalFrame, data, user, going); 
+					dismulti.setVisible(false);
+				} else {
+					SelErr.setVisible(true);
+				}
 			}
 		});
 		btnNewButton.setBounds(20, 228, 85, 31);
 		dismulti.add(btnNewButton);
+		
+		JButton btnExit = new JButton("EXIT");
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PlayerInfo ply = new PlayerInfo(internalFrame, data, user); 
+				dismulti.setVisible(false);
+			}
+		});
+		btnExit.setBounds(407, 307, 85, 31);
+		dismulti.add(btnExit);
+		
 		
 	}
 }

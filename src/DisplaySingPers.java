@@ -101,7 +101,7 @@ public class DisplaySingPers extends JPanel {
 			}
 		});
 		EditBut.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 10));
-		EditBut.setBounds(382, 272, 85, 21);
+		EditBut.setBounds(322, 317, 85, 21);
 		displ.add(EditBut);
 		
 		JLabel MidNamLab = new JLabel("Middle Name");
@@ -193,9 +193,25 @@ public class DisplaySingPers extends JPanel {
 			}
 		});
 		btnExit.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 10));
-		btnExit.setBounds(289, 272, 85, 21);
+		btnExit.setBounds(407, 317, 85, 21);
 		displ.add(btnExit);
+		
+		JButton EditBut_1 = new JButton("DELETE");
+		EditBut_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					data.deletePers(chara);
+					DisplayMultiPers dis = new DisplayMultiPers(internalFrame, data, user); 
+					displ.setVisible(false); 
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} 
+			}
+		});
+		EditBut_1.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 10));
+		EditBut_1.setBounds(182, 317, 85, 21);
+		displ.add(EditBut_1);
 	}
 }
-
 

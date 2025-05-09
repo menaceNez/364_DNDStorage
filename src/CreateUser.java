@@ -62,7 +62,7 @@ public class CreateUser extends JPanel {
 		JTextArea ExiPlayerLog = new JTextArea();
 		ExiPlayerLog.setWrapStyleWord(true);
 		ExiPlayerLog.setEditable(false);
-		ExiPlayerLog.setBounds(361, 132, 96, 40);
+		ExiPlayerLog.setBounds(338, 132, 119, 40);
 		ExiPlayerLog.setLineWrap(true);
 		ExiPlayerLog.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 8)); 
 		ExiPlayerLog.setText("Enter First and Last Names into the spaces below to access an existing Player");

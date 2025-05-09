@@ -8,6 +8,15 @@ public class Player {
         this.FirstName = first; 
         this.LastName = last;  
     }
+    
+    public Player(String first, String last, int ID) {
+    	this(first, last);
+    	this.PlayID = ID; 
+    }
+    
+    public Player(int ID) {
+    	this.PlayID = ID; 
+    }
 
     public String getFirstName(){
         return FirstName; 
@@ -33,7 +42,8 @@ public class Player {
         this.PlayID = ID; 
 
     }
-
+    
+    
     public String toString() {
     	return this.PlayID +": " + this.FirstName + " "+ this.LastName; 
     }

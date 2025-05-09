@@ -30,12 +30,12 @@ public class WelcomeScreenGUI extends JPanel {
 		welcomeLabel.setFont(new Font("Copperplate Gothic Light", Font.BOLD, 20));
 		welcome.add(welcomeLabel); 
 		
-		JButton findButton = new JButton("go to Find");
-		findButton.setBounds(329, 162, 85, 21);
+		JButton findButton = new JButton("View");
+		findButton.setBounds(281, 162, 115, 21);
 		welcome.add(findButton);
 		
-		JButton createButton = new JButton("go to Create");
-		createButton.setBounds(32, 162, 115, 21);
+		JButton createButton = new JButton("Create");
+		createButton.setBounds(77, 162, 115, 21);
 		welcome.add(createButton);
 		
 		
@@ -43,14 +43,15 @@ public class WelcomeScreenGUI extends JPanel {
 			public void actionPerformed(ActionEvent e) { 
 				CreateUser user = new CreateUser(internalFrame, data); 
 				welcome.setVisible(false);   
-				
 			}
 		}
 		);
 		
 		findButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				ViewOption view = new ViewOption(internalFrame, data) ;
+				//ViewPers pers = new ViewPers(internalFrame, data); 
+				welcome.setVisible(false); ;
 			}
 		});
 		

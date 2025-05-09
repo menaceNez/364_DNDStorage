@@ -192,7 +192,7 @@ public class EditPers extends JPanel {
 			}
 		});
 		btnExit.setFont(new Font("Copperplate Gothic Light", Font.PLAIN, 10));
-		btnExit.setBounds(317, 272, 57, 21);
+		btnExit.setBounds(307, 272, 67, 21);
 		pers.add(btnExit);
 		
 		JLabel PickClaLab = new JLabel("Select Class");
